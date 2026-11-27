@@ -1,35 +1,41 @@
-
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const Sidebar = () => {
-  return (
-    <div className="bg-white w-56 min-h-screen p-5 shadow">
 
-      <h2 className="text-lg font-bold mb-5">
+  const linkStyle = ({ isActive }) =>
+    `p-4 rounded-lg text-lg transition ${
+      isActive
+        ? 'bg-blue-500 text-white'
+        : 'text-black hover:bg-gray-200'
+    }`
+
+  return (
+   <div className="w-full md:w-64 md:min-h-screen bg-white p-4 md:p-6 flex flex-row md:flex-col flex-wrap gap-3">
+
+      <h2 className="text-xl font-bold mb-3">
         Menu
       </h2>
 
-      <ul className="space-y-4">
-        <li className="bg-blue-500 text-white p-3 rounded">
-          Dashboard
-        </li>
+      <NavLink to="/" end className={linkStyle}>
+        Dashboard
+      </NavLink>
 
-        <li className="p-3 hover:bg-gray-100 rounded cursor-pointer">
-          Pothole Detection
-        </li>
+      <NavLink to="/detection" className={linkStyle}>
+        Pothole Detection
+      </NavLink>
 
-        <li className="p-3 hover:bg-gray-100 rounded cursor-pointer">
-          Road Map
-        </li>
+      <NavLink to="/roadmap" className={linkStyle}>
+        Road Map
+      </NavLink>
 
-        <li className="p-3 hover:bg-gray-100 rounded cursor-pointer">
-          Reports
-        </li>
+      <NavLink to="/reports" className={linkStyle}>
+        Reports
+      </NavLink>
 
-        <li className="p-3 hover:bg-gray-100 rounded cursor-pointer">
-          Settings
-        </li>
-      </ul>
+      <NavLink to="/settings" className={linkStyle}>
+        Settings
+      </NavLink>
 
     </div>
   )

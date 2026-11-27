@@ -1,56 +1,68 @@
-
 import React from 'react'
+
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
-import Detection from './components/Detection'
 import Footer from './components/Footer'
+
+import Dashboard from './pages/Dashboard'
+import Detection from './pages/Detection'
+import RoadMap from './pages/RoadMap'
+import Reports from './pages/Reports'
+import Settings from './pages/Settings'
+import Home from './pages/Home'
+import About from './pages/About'
+import Admin from './pages/Admin'
+
+import { Routes, Route } from 'react-router-dom'
+
+
 const App = () => {
+
   return (
+
     <>
+
       <Navbar />
 
-      <div className="flex">
+      <div className="flex flex-col md:flex-row">
+
         <Sidebar />
 
-        <div className="flex-1 p-6 bg-gray-100 min-h-screen">
+        <Routes>
 
-          <h1 className="text-2xl font-bold mb-2">
-            Dashboard
-          </h1>
+          <Route path="/" element={<Dashboard />} />
 
-          <p className="text-gray-600 mb-6">
-            Welcome to Pothole Detection AI System
-          </p>
+          <Route path="/detection" element={<Detection />} />
 
-          {/* Dashboard Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <Route path="/roadmap" element={<RoadMap />} />
 
-            <div className="bg-white p-5 rounded-lg shadow">
-              <h2>Total Potholes</h2>
-              <h1 className="text-3xl font-bold text-red-500">120</h1>
-            </div>
+          <Route path="/reports" element={<Reports />} />
 
-            <div className="bg-white p-5 rounded-lg shadow">
-              <h2>Detected Today</h2>
-              <h1 className="text-3xl font-bold text-blue-500">25</h1>
-            </div>
+          <Route path="/settings" element={<Settings />} />
 
-            <div className="bg-white p-5 rounded-lg shadow">
-              <h2>Resolved</h2>
-              <h1 className="text-3xl font-bold text-green-500">80</h1>
-            </div>
+          <Route path="/home" element={<Home />} />
+<Route path="/about" element={<About />} />
+<Route path="/admin" element={<Admin />} />
 
-          </div>
+          <Route
+            path="*"
+            element={
+              <div className="flex-1 p-8">
+                <h1 className="text-2xl font-bold">
+                  Page Not Found
+                </h1>
+              </div>
+            }
+          />
 
-          {/* Detection Component */}
-          <div className="bg-white p-6 mt-6 rounded-lg shadow">
-            <Detection />
-          </div>
+        </Routes>
 
-        </div>
       </div>
-      <Footer/>
+
+      <Footer />
+
     </>
+
   )
 }
 
